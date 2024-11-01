@@ -52,5 +52,4 @@ try {
     $_  # Output the error message directly
 }
 
-runas /user:robert.baratheon@sevenkingdoms.local "powershell.exe"
 
