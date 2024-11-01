@@ -26,7 +26,7 @@ try {
     Write-Output "AD Module verification failed. Get-ADDomain could not be run: $_"
 }
 
-# Run Get-ADDefaultDomainPasswordPolicy as `robb.stark`
+# Run Get-ADDefaultDomainPasswordPolicy
 Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADModule"
 try {
     Get-ADDefaultDomainPasswordPolicy
