@@ -7,6 +7,11 @@ if [ -d "$DIR" ]; then
 	rm -rf "$DIR"
 fi
 
+if [ -d "$DIR.zip" ]; then
+	echo "zip $DIR exists. Deleting it..."
+	rm "$DIR.zip" 
+fi
+
 echo "Creating new empty directory $DIR..."
 mkdir "$DIR"
 echo "Done."
