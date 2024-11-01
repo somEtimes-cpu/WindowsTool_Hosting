@@ -45,6 +45,5 @@ mv "$DIR/Recon" "$DIR/$PVname"
 #rm -rf "$DIR/$PVname"
 
 zip -r "$DIR.zip" "$DIR"
-echo "Starting Pythohn HTTP server on $DIR..."
-cd "$DIR" || exit 1
+echo "Starting Pythohn HTTP server"
 python3 -m http.server 8080
