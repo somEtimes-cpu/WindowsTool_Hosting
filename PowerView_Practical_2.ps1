@@ -45,7 +45,7 @@ try {
     Write-Output "PowerView verification failed. Get-NetDomain could not be run: $_"
 }
 
-Read-Host "Press Enter to run (Get-DomainPolicy).SystemAccess for PowerView as robb.stark"
+Read-Host "Press Enter to run (Get-DomainPolicy).SystemAccess for PowerView"
 try {
     (Get-DomainPolicy).Systemaccess
 } catch {
