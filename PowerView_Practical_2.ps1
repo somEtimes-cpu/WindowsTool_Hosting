@@ -1,6 +1,6 @@
 # Rename the PowerShell window to "PowerView"
 $Host.UI.RawUI.WindowTitle = "PowerView"
-
+whoami
 # Define credentials
 #$securePassword_regular = ConvertTo-SecureString "sexywolfy" -AsPlainText -Force
 #$credential_regular = New-Object System.Management.Automation.PSCredential("NORTH\robb.stark", $securePassword_regular)
@@ -51,3 +51,6 @@ try {
 } catch {
     $_  # Output the error message directly
 }
+
+runas /user:robert.baratheon@sevenkingdoms.local "powershell.exe"
+
