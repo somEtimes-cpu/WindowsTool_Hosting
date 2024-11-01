@@ -2,11 +2,11 @@
 $Host.UI.RawUI.WindowTitle = "ADModule"
 
 # Define credentials
-$securePassword_regular = ConvertTo-SecureString "sexywolfy" -AsPlainText -Force
-$credential_regular = New-Object System.Management.Automation.PSCredential("NORTH\robb.stark", $securePassword_regular)
+#$securePassword_regular = ConvertTo-SecureString "sexywolfy" -AsPlainText -Force
+#$credential_regular = New-Object System.Management.Automation.PSCredential("NORTH\robb.stark", $securePassword_regular)
 
-$securePassword_admin = ConvertTo-SecureString "iamthekingoftheworld" -AsPlainText -Force
-$credential_admin = New-Object System.Management.Automation.PSCredential("sevenkingdoms\robert.baratheon", $securePassword_admin)
+#$securePassword_admin = ConvertTo-SecureString "iamthekingoftheworld" -AsPlainText -Force
+#$credential_admin = New-Object System.Management.Automation.PSCredential("sevenkingdoms\robert.baratheon", $securePassword_admin)
 
 # Set Execution Policy to unrestricted
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -ErrorAction Stop
@@ -29,14 +29,6 @@ try {
 Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADModule as robb.stark"
 try {
     Get-ADDefaultDomainPasswordPolicy -Credential $credential_regular -ErrorAction Stop
-} catch {
-    $_  # Output the error message directly
-}
-
-# Run Get-ADDefaultDomainPasswordPolicy as `robert.baratheon`
-Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADModule as robert.baratheon"
-try {
-    Get-ADDefaultDomainPasswordPolicy -Credential $credential_admin -ErrorAction Stop
 } catch {
     $_  # Output the error message directly
 }
