@@ -1,12 +1,12 @@
-﻿# Rename the PowerShell window to "PowerView"
+# Rename the PowerShell window to "PowerView"
 $Host.UI.RawUI.WindowTitle = "PowerView"
 
 # Define credentials
 $securePassword_regular = ConvertTo-SecureString "sexywolfy" -AsPlainText -Force
-$credential_regular = New-Object System.Management.Automation.PSCredential("robb.stark", $securePassword_regular)
+$credential_regular = New-Object System.Management.Automation.PSCredential("sevenkingdoms\robb.stark", $securePassword_regular)
 
 $securePassword_admin = ConvertTo-SecureString "iamthekingoftheworld" -AsPlainText -Force
-$credential_admin = New-Object System.Management.Automation.PSCredential("robert.baratheon", $securePassword_admin)
+$credential_admin = New-Object System.Management.Automation.PSCredential("sevenkingdoms\robert.baratheon", $securePassword_admin)
 
 # Set Execution Policy to Full Language Mode
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -ErrorAction Stop
