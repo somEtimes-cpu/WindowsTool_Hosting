@@ -2,8 +2,8 @@
 $Host.UI.RawUI.WindowTitle = "PowerView"
 
 # Define credentials
-$securePassword_regular = ConvertTo-SecureString "sexywolfy" -AsPlainText -Force
-$credential_regular = New-Object System.Management.Automation.PSCredential("NORTH\robb.stark", $securePassword_regular)
+#$securePassword_regular = ConvertTo-SecureString "sexywolfy" -AsPlainText -Force
+#$credential_regular = New-Object System.Management.Automation.PSCredential("NORTH\robb.stark", $securePassword_regular)
 
 $securePassword_admin = ConvertTo-SecureString "iamthekingoftheworld" -AsPlainText -Force
 $credential_admin = New-Object System.Management.Automation.PSCredential("sevenkingdoms\robert.baratheon", $securePassword_admin)
@@ -45,18 +45,9 @@ try {
     Write-Output "PowerView verification failed. Get-NetDomain could not be run: $_"
 }
 
-# Run (Get-DomainPolicy).SystemAccess as `robb.stark`
 Read-Host "Press Enter to run (Get-DomainPolicy).SystemAccess for PowerView as robb.stark"
 try {
-    (Get-DomainPolicy -Credential $credential_regular).SystemAccess
-} catch {
-    $_  # Output the error message directly
-}
-
-# Run (Get-DomainPolicy).SystemAccess as `robert.baratheon`
-Read-Host "Press Enter to run (Get-DomainPolicy).SystemAccess for PowerView as robert.baratheon"
-try {
-    (Get-DomainPolicy -Credential $credential_admin).SystemAccess
+    (Get-DomainPolicy).SystemAccess
 } catch {
     $_  # Output the error message directly
 }
