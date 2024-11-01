@@ -27,7 +27,7 @@ try {
 }
 
 # Run Get-ADDefaultDomainPasswordPolicy as `robb.stark`
-Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADModule as robb.stark"
+Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADModule"
 try {
     Get-ADDefaultDomainPasswordPolicy
 } catch {
