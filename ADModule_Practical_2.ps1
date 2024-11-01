@@ -29,7 +29,7 @@ try {
 # Run Get-ADDefaultDomainPasswordPolicy as `robb.stark`
 Read-Host "Press Enter to run Get-ADDefaultDomainPasswordPolicy for ADModule as robb.stark"
 try {
-    Get-ADDefaultDomainPasswordPolicy -Credential $credential_regular -ErrorAction Stop
+    Get-ADDefaultDomainPasswordPolicy
 } catch {
     $_  # Output the error message directly
 }
