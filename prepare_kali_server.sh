@@ -16,7 +16,7 @@ echo "Creating new empty directory $DIR..."
 mkdir "$DIR"
 echo "Done."
 
-mv "*_Practical_2.ps1" "$DIR"
+mv *_Practical_2.ps1 "$DIR"
 
 ADMODULE_REPO_LINK="https://github.com/samratashok/ADModule.git"
 name="ADModule"
