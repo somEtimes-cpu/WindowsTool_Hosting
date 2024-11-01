@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="Windows_Tools_hosting"
+DIR="Windows_Tools"
 
 if [ -d "$DIR" ]; then
 	echo "Directory $DIR exists. Deleting it..."
@@ -44,6 +44,7 @@ mv "$DIR/Recon" "$DIR/$PVname"
 #echo "Creating zip archive for PowerView"
 #rm -rf "$DIR/$PVname"
 
+zip -r "$DIR.zip" "$DIR"
 echo "Starting Pythohn HTTP server on $DIR..."
 cd "$DIR" || exit 1
 python3 -m http.server 8080
