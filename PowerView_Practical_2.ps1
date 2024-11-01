@@ -35,7 +35,8 @@ if ($output -match "is not recognized as the name of a cmdlet") {
 
 # Unblock and import PowerView module
 Unblock-File ./PowerView/PowerView.ps1
-Import-Module ./PowerView/PowerView.ps1 -Verbose
+#Import-Module ./PowerView/PowerView.ps1 -Verbose
+IEX (Get-Content -Path "./PowerView/PowerView.ps1" -Raw)
 
 # Verify PowerView installation with Get-NetDomain
 try {
