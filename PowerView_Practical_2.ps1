@@ -34,8 +34,8 @@ if ($output -match "is not recognized as the name of a cmdlet") {
 }
 
 # Unblock and import PowerView module
-Unblock-File ./PowerView/PowerView.ps1 -ErrorAction Stop
-Import-Module ./PowerView/PowerView.ps1 -Verbose -ErrorAction Stop
+Unblock-File ./PowerView/PowerView.ps1
+Import-Module ./PowerView/PowerView.ps1 -Verbose
 
 # Verify PowerView installation with Get-NetDomain
 try {
@@ -47,7 +47,7 @@ try {
 
 Read-Host "Press Enter to run (Get-DomainPolicy).SystemAccess for PowerView as robb.stark"
 try {
-    (Get-DomainPolicy).SystemAccess
+    (Get-DomainPolicy).Systemaccess
 } catch {
     $_  # Output the error message directly
 }
