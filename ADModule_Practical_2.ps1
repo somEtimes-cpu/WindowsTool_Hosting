@@ -1,5 +1,6 @@
 # Rename the PowerShell window to "ADModule"
 $Host.UI.RawUI.WindowTitle = "ADModule"
+whoami
 
 # Define credentials
 #$securePassword_regular = ConvertTo-SecureString "sexywolfy" -AsPlainText -Force
@@ -32,3 +33,5 @@ try {
 } catch {
     $_  # Output the error message directly
 }
+
+runas /user:robert.baratheon@sevenkingdoms.local "powershell.exe"
